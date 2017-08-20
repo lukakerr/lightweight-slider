@@ -9,11 +9,11 @@
 ### Images
 
 <div style="text-align:center">
-	<img src ="http://i.imgur.com/bFp8h5T.png" alt="slider">
+	<img src ="http://i.imgur.com/RPa0BId.png" alt="slider">
 </div>
 
 <div style="text-align:center">
-	<img src ="http://i.imgur.com/BZeMzWj.png" alt="slider">
+	<img src ="http://i.imgur.com/3LVafrS.png" alt="slider">
 </div>
 
 ### Usage

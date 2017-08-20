@@ -2,14 +2,15 @@
 
 ### Features
 
-- Auto play with a timer that resets when next, back or a random image is clicked.
-- Super lightweight (3kb minified).
+- Auto play with a timer that resets when next, back or a random image is clicked
+- Super lightweight (3kb minified)
 - Easy to use
+- Custom left and right cursors (shown in second image below)
 
 ### Images
 
 <div style="text-align:center">
-	<img src ="http://i.imgur.com/RPa0BId.png" alt="slider">
+	<img src ="http://i.imgur.com/bFp8h5T.png" alt="slider">
 </div>
 
 <div style="text-align:center">

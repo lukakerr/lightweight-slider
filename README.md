@@ -47,7 +47,7 @@ Simply include jQuery and the `slider.min.js` file as below:
     </div>
   </div>
 
-  <script src="slider.js"></script>
+  <script src="slider.min.js"></script>
 
 </body>
 </html>

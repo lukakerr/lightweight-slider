@@ -6,6 +6,16 @@
 - Super lightweight (3kb minified).
 - Easy to use
 
+### Images
+
+<div style="text-align:center">
+	<img src ="http://i.imgur.com/bFp8h5T.png" alt="slider">
+</div>
+
+<div style="text-align:center">
+	<img src ="http://i.imgur.com/BZeMzWj.png" alt="slider">
+</div>
+
 ### Usage
 
 Simply include jQuery and the `slider.min.js` file as below:

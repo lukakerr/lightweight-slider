@@ -3,7 +3,7 @@
 ### Features
 
 - Auto play with a timer that resets when next, back or a random image is clicked
-- Super lightweight (3kb minified)
+- Super lightweight (2kb minified)
 - Easy to use
 - Custom left and right cursors (shown in second image below)
 - Simple customisation

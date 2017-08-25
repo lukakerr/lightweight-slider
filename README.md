@@ -9,7 +9,7 @@
 - Simple customisation
 
 ### Images
-
+<sup>Taken by <a href="https://lukakerrphoto.com">me!</a></sup>
 <div style="text-align:center">
 	<img src ="http://i.imgur.com/bFp8h5T.png" alt="slider">
 </div>

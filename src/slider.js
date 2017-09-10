@@ -1,107 +1,136 @@
-var height = $('.banner').attr("data-height")
-var width = $('.banner').attr("data-width")
-var autoSlide = $('.banner').attr("data-autoslide")
-var nextCursor = $('.next').attr("data-next-cursor")
-var previousCursor = $('.previous').attr("data-previous-cursor")
+// Elements
+var bannerEl = document.querySelector(".banner");
+var sliderEl = document.querySelectorAll(".slider");
+var previousEl = document.querySelector(".previous");
+var nextEl = document.querySelector(".next");
+var linksEl = document.querySelector(".links");
+var imgLinks = linksEl.getElementsByTagName("a");
 
-$('body, html').css({
-	'margin': '0'
-})
+// Data attributes
+var height = bannerEl.getAttribute("data-height"); 
+var width = bannerEl.getAttribute("data-width");
+var slideSpeed = bannerEl.getAttribute("data-slide-speed");
+var autoSlide = bannerEl.getAttribute("data-autoslide");
+var nextCursor = nextEl.getAttribute("data-next-cursor");
+var previousCursor = previousEl.getAttribute("data-previous-cursor");
 
-$('.banner, .slider').css({
-  'width': width,
-  'height': height + 'px',
-  'margin': '0 auto'
-});
+// Slider variables
+var totalImgs = imgLinks.length;
+var currentImgNumber = 1;
+var nextImgNumber = currentImgNumber + 1;
+var previousImgNumber = totalImgs;
+var randomImgNumber = 3;
+var currentImg = bannerEl.querySelector('img:nth-of-type(' + currentImgNumber + ')');
+var nextImg = bannerEl.querySelector('img:nth-of-type(' + nextImgNumber + ')');
+var previousImg = bannerEl.querySelector('img:nth-of-type(' + previousImgNumber + ')');
+var randomImg = bannerEl.querySelector('img:nth-of-type(' + randomImgNumber + ')');
 
-$('.slider').css({
-  'position': 'absolute',
-  'opacity': '0',
-  'object-fit': 'cover'
-});
+// Set CSS to element or elements
+function setCSS(styles, elements) {
+	if (elements.length > 1) {
+		for (var i = 0; i < elements.length; i++) {
+	    Object.assign(elements[i].style, styles);
+		}
+	} else {
+		Object.assign(elements.style, styles)
+	}
+}
 
-$('.previous, .next').css({
-  'margin': '0 auto',
-	'position': 'relative',
-	'width': '50%',
+// Set CSS before elements appear
+document.body.style.margin = '0';
+
+setCSS({'width': width, 
+	'height': height + 'px', 
+	'margin': '0 auto'
+}, bannerEl);
+
+setCSS({'margin': '0 auto', 
+	'position': 'relative', 
+	'width': '50%', 
 	'height': height + 'px'
-});
+}, [previousEl, nextEl]);
 
-$('.previous').css({
-  'cursor': previousCursor? 'url(' + previousCursor + '), auto': 'w-resize',
-  'float': 'left',
-  'margin': '0 auto',
-	'position': 'relative',
+setCSS({'cursor': (totalImgs <= 1) ? 'default' : previousCursor ? 'url(' + previousCursor + '), auto' : 'w-resize', 
+	'float': 'left', 
+	'margin': '0 auto', 
+	'position': 'relative', 
 	'width': '50%'
-});
+}, previousEl);
 
-$('.next').css({
-  'cursor': nextCursor? 'url(' + nextCursor + '), auto' : 'e-resize',
-  'float': 'right'
-});
+setCSS({'cursor': (totalImgs <= 1) ? 'default' : nextCursor ? 'url(' + nextCursor + '), auto' : 'e-resize', 
+	'float': 'right'
+}, nextEl);
 
-$('.links').css({
-  'text-align': 'center',
-  'position': 'absolute',
-  'top': height - 50 + 'px',
-	'left': '0',
-	'right': '0',
-	'margin': 'auto',
+setCSS({'text-align': 'center', 
+	'position': 'absolute', 
+	'top': height - 50 + 'px', 
+	'left': '0', 'right': '0', 
+	'margin': 'auto', 
 	'cursor': 'default'
-});
+}, linksEl);
 
-$('.links a').css({
-  'color': '#000',
-  'display': 'inline-block',
-  'text-decoration': 'none',
-  'background': '#FFF',
-  'border-radius': '50%',
-  'height': '15px',
-  'width': '15px',
-  'margin': '10px 5px',
-  'transition': 'all 0.5s'
-});
+// For multiple elements of same class
+// Iterate over and set individual element's CSS
+for (var i = 0; i < sliderEl.length; i++) {
+	setCSS({'width': width, 'height': 
+		height + 'px', 'margin': '0 auto'
+	}, sliderEl[i]);
 
-$(document).ready(function() {
+	setCSS({'position': 'absolute', 
+		'opacity': '0', 'object-fit': 'cover'
+	}, sliderEl[i]);
+}
 
- 	var totalImgs = $(".links > a").length;
-	var currentImgNumber = 1;
-	var nextImgNumber = currentImgNumber + 1;
-	var previousImgNumber = totalImgs;
-	var randomImgNumber = 3;
-	var currentImg = $('.banner img:nth-of-type(' + currentImgNumber + ')'); 
-	var nextImg = $('.banner img:nth-of-type(' + nextImgNumber + ')'); 
-	var previousImg = $('.banner img:nth-of-type(' + previousImgNumber + ')');
-	var randomImg = $('.banner img:nth-of-type(' + randomImgNumber + ')');
+for (var i = 0; i < imgLinks.length; i++) {
+	setCSS({'color': '#000',
+	  'display': 'inline-block',
+	  'text-decoration': 'none',
+	  'background': '#FFF',
+	  'border-radius': '50%',
+	  'height': '15px',
+	  'width': '15px',
+	  'margin': '10px 5px',
+	  'transition': 'all 0.5s'
+	}, imgLinks[i]);
+}
+
+(function() {
+
+	function fadeTo(element, speed, opacity) {
+		setCSS({'transition': 'none',
+			'transition': 'opacity ' + speed + 'ms',
+			'opacity': opacity
+		}, element);
+	}
    
 	function loadImg() {
-		currentImg.stop().fadeTo("slow", 1);
+		fadeTo(currentImg, slideSpeed, 1);
 	}
    
 	function nextImgFade() {
-		currentImg.stop().fadeTo("slow", 0);
-		nextImg.stop().fadeTo("slow", 1);
+		fadeTo(currentImg, slideSpeed, 0);
+		fadeTo(nextImg, slideSpeed, 1);
 	}
    
 	function previousImgFade() {
-		currentImg.stop().fadeTo("slow", 0);
-		previousImg.stop().fadeTo("slow", 1);
+		fadeTo(currentImg, slideSpeed, 0);
+		fadeTo(previousImg, slideSpeed, 1);
 	}
    
 	function randomImgFade() {
-		currentImg.stop().fadeTo("slow", 0);
-		randomImg.stop().fadeTo("slow", 1);
+		fadeTo(currentImg, slideSpeed, 0);
+		fadeTo(randomImg, slideSpeed, 1);
 	}
    
 	function boldText() {
-		$('.links a').each(function() {
-			var currentHref = $(this).attr('href');
+		for (var i = 0; i < imgLinks.length; i++) {
+			var currentHref = imgLinks[i].getAttribute('href');
 			if (currentImgNumber == currentHref) {
-				$(this).css("opacity", "0.8");
+				setCSS({'opacity': '0.8'}, imgLinks[i]);
 			} else {
-				$(this).css("opacity", "0.4");
+				setCSS({'opacity': '0.4'}, imgLinks[i]);
 			}
-		});
+		}
 	}
    
 	function imgLoop() {
@@ -118,10 +147,10 @@ $(document).ready(function() {
 	}
    
 	function refreshImgs() {
-		currentImg = $('.banner img:nth-of-type(' + currentImgNumber + ')'); 
-		nextImg = $('.banner img:nth-of-type(' + nextImgNumber + ')'); 
-		previousImg = $('.banner img:nth-of-type(' + previousImgNumber + ')');
-		randomImg = $('.banner img:nth-of-type(' + randomImgNumber + ')');
+		currentImg = bannerEl.querySelector('img:nth-of-type(' + currentImgNumber + ')');
+		nextImg = bannerEl.querySelector('img:nth-of-type(' + nextImgNumber + ')');
+		previousImg = bannerEl.querySelector('img:nth-of-type(' + previousImgNumber + ')');
+		randomImg = bannerEl.querySelector('img:nth-of-type(' + randomImgNumber + ')');
 	}
    
 	function callFunctions() {
@@ -136,43 +165,51 @@ $(document).ready(function() {
 	}
 
 	function loopImages() {
-		$(".next").trigger("click");
+		var event = document.createEvent('HTMLEvents');
+		event.initEvent('click', true, false);
+		nextEl.dispatchEvent(event);
 	}
-   
-	$('.links a').click(function() {
-		restartInterval();
-		randomImgNumber = parseInt($(this).attr('href'));
-		randomImg = $('.banner img:nth-of-type(' + randomImgNumber + ')');
-		randomImgFade();
-		currentImgNumber = randomImgNumber;
-		callFunctions();
-		return false;
-	});
-   
-	$('.previous, .next').click(function(e) {
-		var direction = $(e.target).attr('class');
-		if (direction == "next") {
-			nextImgFade();
-			currentImgNumber = nextImgNumber;
-		} else {
-			previousImgFade();
-			currentImgNumber = previousImgNumber;
+
+	// Iterate over all links
+	// On link click, restart interval, and fade in that image
+	for (var i = 0; i < imgLinks.length; i++) { 
+		imgLinks[i].onclick = function(){ 
+	  	restartInterval();
+			randomImgNumber = parseInt(this.getAttribute('href'));
+			randomImg = bannerEl.querySelector('img:nth-of-type(' + randomImgNumber + ')');
+			randomImgFade();
+			currentImgNumber = randomImgNumber;
+			callFunctions();
+			return false;
+		} 
+	}
+
+	// Iterate over previous and next elements
+	// On click, check direction, fade next image in and assign current image number
+	var previousAndNext = [previousEl, nextEl];
+	for (var i = 0; i < previousAndNext.length; i++) { 
+		if (totalImgs > 1) {
+			previousAndNext[i].onclick = function(e) { 
+		  	var direction = e.target.getAttribute('class');
+				if (direction == "next") {
+					nextImgFade();
+					currentImgNumber = nextImgNumber;
+				} else {
+					previousImgFade();
+					currentImgNumber = previousImgNumber;
+				}
+				restartInterval();
+				callFunctions();
+			} 
 		}
-		restartInterval();
-		callFunctions();
-	});
+	}
 
 	boldText();
 	loadImg();
 
-	$(window).on('resize load', function() {
-		$(".previous, .next").height($(".slider").height());
-	});
-
-	if (!(totalImgs == 1)) {
+	// Only set interval if there is more than 1 image
+	if (totalImgs > 1) {
 		var interval = setInterval(loopImages, autoSlide);
 	}
-
-	$(".links").width(parseInt(totalImgs)*34);
 	
-});
+})();

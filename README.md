@@ -36,12 +36,12 @@ For every image you include in the `.banner` div, you need to have a `<a href="1
 <body>
 
   <div class="banner" data-height="600" data-width="100%" data-slide-speed="900" data-autoslide="5000">
-    <img src="../img/1.jpg" class="slider">
-    <img src="../img/2.jpg" class="slider">
-    <img src="../img/3.jpg" class="slider">
+    <img src="1.jpg" class="slider">
+    <img src="2.jpg" class="slider">
+    <img src="3.jpg" class="slider">
 
-    <div class="previous" data-previous-cursor="../dist/left.png"></div>
-    <div class="next" data-next-cursor="../dist/right.png"></div>
+    <div class="previous" data-previous-cursor="left.png"></div>
+    <div class="next" data-next-cursor="right.png"></div>
 
     <div class="links">
         <a href="1"></a>
@@ -50,7 +50,7 @@ For every image you include in the `.banner` div, you need to have a `<a href="1
     </div>
   </div>
 
-  <script src="slider.js"></script>
+  <script src="slider.min.js"></script>
 
 </body>
 </html>

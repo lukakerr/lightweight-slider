@@ -1,5 +1,9 @@
 ## A lightweight image slider/carousel
 
+### Demo
+
+Have a look at the slider [here](https://lukakerr.github.io/projects/lightweight-slider/demo.html)
+
 ### Features
 
 - Auto play with a timer that resets when next, back or a random image is clicked

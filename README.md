@@ -2,7 +2,7 @@
 
 ### Demo
 
-Have a look at the slider [here](https://lukakerr.github.io/projects/lightweight-slider/demo.html?)
+Have a look at the slider [here](https://lukakerr.github.io/projects/lightweight-slider/demo.html)
 
 ### Features
 

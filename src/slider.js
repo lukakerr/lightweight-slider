@@ -41,7 +41,8 @@ document.body.style.margin = '0';
 
 setCSS({'width': width, 
 	'height': height + 'px', 
-	'margin': '0 auto'
+	'margin': '0 auto',
+	'position': 'relative'
 }, bannerEl);
 
 setCSS({'margin': '0 auto', 
@@ -62,11 +63,12 @@ setCSS({'cursor': (totalImgs <= 1) ? 'default' : nextCursor ? 'url(' + nextCurso
 }, nextEl);
 
 setCSS({'text-align': 'center', 
-	'position': 'absolute', 
-	'top': height - 50 + 'px', 
+	'position': 'relative', 
+	'top': '-50px', 
 	'left': '0', 'right': '0', 
 	'margin': 'auto', 
-	'cursor': 'default'
+	'cursor': 'default',
+	'width': imgLinks.length * 30 + 'px'
 }, linksEl);
 
 // For multiple elements of same class

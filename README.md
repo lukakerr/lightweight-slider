@@ -7,7 +7,7 @@ Have a look at the slider [here](https://lukakerr.github.io/projects/lightweight
 ### Features
 
 - Auto play with a timer that resets when next, back or a random image is clicked
-- Super lightweight (3kb minified & packed, 4kb just minified)
+- Super lightweight (3kb)
 - Easy to use
 - Custom left and right cursors (shown in second image below)
 - Simple customisation
@@ -25,9 +25,7 @@ Have a look at the slider [here](https://lukakerr.github.io/projects/lightweight
 
 ### Usage
 
-Simply include either the `slider.min.js` or the `slider.packed.js` file at the bottom of your `.html` file, shown below.
-
-The difference between the `slider.min.js` and the `slider.packed.js` is file size and execution speed. The `slider.packed.js` file is smaller in size, although has to run through `eval()` which increases execution time. On the other hand, the `slider.min.js` file is slightly larger in size, but doesn't need to be run through `eval()`, and executes faster. The file size and execution time differences are minimal, but you have the option to pick which one you want to put first - file size or execution speed.
+Simply include the `slider.min.js` file at the bottom of your `.html` file, shown below.
 
 For every image you include in the `.banner` div, you need to have a `<a href="1"></a>` with the corresponding image number.
 
@@ -57,7 +55,6 @@ For every image you include in the `.banner` div, you need to have a `<a href="1
   </div>
 
   <script src="slider.min.js"></script>
-  <!-- Or <script src="slider.packed.js"></script> -->
 
 </body>
 </html>

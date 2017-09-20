@@ -32,7 +32,7 @@ function setCSS(styles, elements) {
 	    Object.assign(elements[i].style, styles);
 		}
 	} else {
-		Object.assign(elements.style, styles)
+		Object.assign(elements.style, styles);
 	}
 }
 
@@ -99,8 +99,7 @@ for (var i = 0; i < imgLinks.length; i++) {
 (function() {
 
 	function fadeTo(element, speed, opacity) {
-		setCSS({'transition': 'none',
-			'transition': 'opacity ' + speed + 'ms',
+		setCSS({'transition': 'opacity ' + speed + 'ms',
 			'opacity': opacity
 		}, element);
 	}
@@ -175,7 +174,7 @@ for (var i = 0; i < imgLinks.length; i++) {
 	// Iterate over all links
 	// On link click, restart interval, and fade in that image
 	for (var i = 0; i < imgLinks.length; i++) { 
-		imgLinks[i].onclick = function(){ 
+		imgLinks[i].onclick = function() { 
 	  	restartInterval();
 			randomImgNumber = parseInt(this.getAttribute('href'));
 			randomImg = bannerEl.querySelector('img:nth-of-type(' + randomImgNumber + ')');
@@ -183,15 +182,15 @@ for (var i = 0; i < imgLinks.length; i++) {
 			currentImgNumber = randomImgNumber;
 			callFunctions();
 			return false;
-		} 
+		};
 	}
 
 	// Iterate over previous and next elements
 	// On click, check direction, fade next image in and assign current image number
 	var previousAndNext = [previousEl, nextEl];
-	for (var i = 0; i < previousAndNext.length; i++) { 
+	for (var t = 0; t < previousAndNext.length; t++) { 
 		if (totalImgs > 1) {
-			previousAndNext[i].onclick = function(e) { 
+			previousAndNext[t].onclick = function(e) { 
 		  	var direction = e.target.getAttribute('class');
 				if (direction == "next") {
 					nextImgFade();
@@ -202,7 +201,7 @@ for (var i = 0; i < imgLinks.length; i++) {
 				}
 				restartInterval();
 				callFunctions();
-			} 
+			};
 		}
 	}
 

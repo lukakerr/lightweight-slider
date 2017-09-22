@@ -45,26 +45,24 @@ setCSS({'width': width,
 	'position': 'relative'
 }, bannerEl);
 
-setCSS({'margin': '0 auto', 
-	'position': 'relative', 
+setCSS({'position': 'absolute', 
 	'width': '50%', 
-	'height': height + 'px'
+	'height': height + 'px',
+	'top': '0'
 }, [previousEl, nextEl]);
 
-setCSS({'cursor': (totalImgs <= 1) ? 'default' : previousCursor ? 'url(' + previousCursor + '), auto' : 'w-resize', 
-	'float': 'left', 
-	'margin': '0 auto', 
-	'position': 'relative', 
-	'width': '50%'
+setCSS({'cursor': (totalImgs <= 1) ? 'default' : previousCursor ? 'url(' + previousCursor + '), auto' : 'w-resize',  
+	'width': '50%',
+	'left': '0'
 }, previousEl);
 
 setCSS({'cursor': (totalImgs <= 1) ? 'default' : nextCursor ? 'url(' + nextCursor + '), auto' : 'e-resize', 
-	'float': 'right'
+	'right': '0'
 }, nextEl);
 
 setCSS({'text-align': 'center', 
 	'position': 'relative', 
-	'top': '-50px', 
+	'top': '550px', 
 	'left': '0', 'right': '0', 
 	'margin': 'auto', 
 	'cursor': 'default',
